@@ -1,3 +1,7 @@
+<p><h3 align="left">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&random=false&width=435&lines=Howdy+All!!!;Project+Under+Works 🚧 🚧 🚧" alt="Typing SVG" /></a>
+</p></h3>
+
 # Cogniscruit
 
 **Generating Interview Questions for Candidates Using Large Language Models (LLMs)**
