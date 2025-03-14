@@ -1,0 +1,9 @@
+flask
+ollama
+python-dotenv
+requests
+beautifulsoup4
+werkzeug
+python-docx
+pymupdf
+chardet

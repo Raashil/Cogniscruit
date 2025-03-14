@@ -1,0 +1,37 @@
+HUI ZHANG
+https://github.com/hui0041600 | http://www.hu1zhang.com | hui0041600@gmail.com
+PROFILE
+Full-stack developer with expertise in React, Next.js, and AI-driven applications. Strong foundation in
+JavaScript, Python, and database management. Skilled in real-time data processing, cloud deployment, and
+AI/ML integration. Quick learner, problem-solver, and effective team player in fast-paced environments.
+EDUCATION
+Pace University, New York, NY | MS in Computer Science Candidate | GPA: 3.97 | Sep 2023 – May 2025
+Henan University, Kaifeng, Henan | BA in French | GPA: 3.05 | Sep 2018 – Jun 2022
+ACADEMIC PROJECTS
+Parallel Computing with GPU and CUDA
+• Optimized CUDA-based parallel computations, achieving 10× speedup over CPU implementations.
+• Conducted comparative analysis of Mandelbrot Set computations and image processing using CUDA on
+NVIDIA T4 GPUs vs. OpenMP on CPUs.
+• Led theoretical research, developing lecture materials to simplify GPU programming concepts for students.
+Myportfolio
+• Built a modern portfolio website with Next.js, TypeScript, and Tailwind CSS, showcasing projects and skills.
+• Implemented dynamic UI components, SSR, and SSG for enhanced performance and SEO.
+• Integrated a Node.js backend (Express.js) to support future API requests and dynamic updates.
+Deep Learning-Based Image Classifier
+• Developed a ResNet50-based image classifier, achieving 90.09% accuracy using TensorFlow &
+PyTorch.
+• Built an image preprocessing pipeline with OpenCV for data augmentation & normalization.
+• Optimized GPU-accelerated training with Adam optimizer, batch normalization, and
+hyperparameter tuning.
+• Benchmarked TensorFlow vs. PyTorch, demonstrating PyTorch’s +2.5% accuracy improvement and superior
+performance.
+WORK EXPERIENCE
+Nanjing Yuduoyou Information Technology Co Ltd | Jiangsu, China | May 2022 – Aug 2024
+• Increased content production efficiency by 40% through advanced multimedia editing.
+• Created 50+ interactive courseware materials, improving learner engagement by 30%.
+SKILLS
+• Programming: Python, JavaScript, TypeScript, Java
+• Frameworks: Next.js, React, Node.js, Express.js
+• AI/ML: TensorFlow, PyTorch, OpenCV
+• Web Technologies: Tailwind CSS, SEO Optimization
+• DevOps: Git, Vercel, CI/CD
