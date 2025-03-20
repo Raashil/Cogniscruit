@@ -2,12 +2,21 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { signIn, signOut } from "next-auth/react";
 
 export default function Home() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 sm:p-20">
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 relative">
+      <Link
+        href="/"
+        className="absolute top-4 left-4 text-blue-500 hover:underline px-4 py-2 border rounded-md"
+      >
+        Home
+      </Link>
+
       <h1 className="text-4xl font-bold mb-6">
         {isLogin ? "Login" : "Sign Up"}
       </h1>
@@ -58,11 +67,19 @@ export default function Home() {
 
         <div className="flex flex-col items-center gap-2 mt-4 w-full">
           <div className="w-full h-6"></div>
-          <button className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 flex items-center justify-center gap-2">
+
+          <button
+            onClick={() => signIn("google")}
+            className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 flex items-center justify-center gap-2"
+          >
             <Image src="/google.svg" alt="Google" width={20} height={20} />
             Sign in with Google
           </button>
-          <button className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-900 flex items-center justify-center gap-2">
+
+          <button
+            onClick={() => signIn("github")}
+            className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-900 flex items-center justify-center gap-2"
+          >
             <Image src="/github.svg" alt="GitHub" width={20} height={20} />
             Sign in with GitHub
           </button>
