@@ -1,103 +1,279 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1 className="text-4xl font-bold text-center sm:text-left">
-          Cogniscruit
-        </h1>
-        <p className="text-lg text-center sm:text-left">
-          Generating Interview Questions for Candidates Using Large Language Models (LLMs)
-        </p>
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by exploring our project on{" "}
-            <a
-              href="https://github.com/Raashil/Cogniscruit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              GitHub
-            </a>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://github.com/Raashil/Cogniscruit"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/github.svg" // Ensure you have a GitHub icon in your public folder
-              alt="GitHub logomark"
-              width={20}
-              height={20}
-            />
-            Visit GitHub
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className="fixed w-full bg-white/80 backdrop-blur-sm z-50 border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex-shrink-0">
+              <span className="text-2xl font-bold text-blue-600">Cogniscruit</span>
+            </div>
+            <div className="hidden sm:flex sm:space-x-8">
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+                About
+              </Link>
+              <Link href="/features" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+                Features
+              </Link>
+              <Link href="/contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+                Contact
+              </Link>
+            </div>
+            <div>
+              <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">
+                Sign In
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+            <span className="block">Automate Interview Question Generation</span>
+            <span className="block text-blue-600">with AI</span>
+          </h1>
+          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+            Save Time, Ensure Consistency
+          </p>
+          <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+            <div className="rounded-md shadow">
+              <Link href="/demo" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                Request Demo
+              </Link>
+            </div>
+            <div className="mt-3 sm:mt-0 sm:ml-3">
+              <Link href="/learn-more" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10">
+                Learn More
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Problem Statement */}
+      <div className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              The Challenge of Manual Interview Question Generation
+            </h2>
+            <p className="mt-4 text-lg text-gray-500">
+              Interviewers spend countless hours crafting questions, often resulting in inconsistent assessments and missed opportunities to evaluate key skills.
+            </p>
+            <div className="mt-8">
+              <div className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                See How Cogniscruit Solves This
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Key Features
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Feature 1 */}
+            <div className="relative p-6 bg-white rounded-lg shadow-lg">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-blue-500 text-white">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="mt-4 text-lg font-medium text-gray-900">Personalized Questions</h3>
+                <p className="mt-2 text-base text-gray-500">
+                  Generate tailored interview questions based on candidate profiles and experience levels.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="relative p-6 bg-white rounded-lg shadow-lg">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-blue-500 text-white">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="mt-4 text-lg font-medium text-gray-900">Job Description Analysis</h3>
+                <p className="mt-2 text-base text-gray-500">
+                  Automatically extract key requirements and create relevant interview questions.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="relative p-6 bg-white rounded-lg shadow-lg">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-blue-500 text-white">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <h3 className="mt-4 text-lg font-medium text-gray-900">Skill Assessment</h3>
+                <p className="mt-2 text-base text-gray-500">
+                  Comprehensive evaluation of specific skills and competencies.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works */}
+      <div className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              How It Works
+            </h2>
+          </div>
+          <div className="mt-12">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative flex justify-center space-x-8">
+                <div className="bg-white px-4">
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 text-white">
+                      1
+                    </div>
+                    <h3 className="mt-4 text-lg font-medium text-gray-900">Input Details</h3>
+                    <p className="mt-2 text-sm text-gray-500">Enter candidate and job information</p>
+                  </div>
+                </div>
+                <div className="bg-white px-4">
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 text-white">
+                      2
+                    </div>
+                    <h3 className="mt-4 text-lg font-medium text-gray-900">AI Processing</h3>
+                    <p className="mt-2 text-sm text-gray-500">Our AI analyzes and generates questions</p>
+                  </div>
+                </div>
+                <div className="bg-white px-4">
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 text-white">
+                      3
+                    </div>
+                    <h3 className="mt-4 text-lg font-medium text-gray-900">Ready to Use</h3>
+                    <p className="mt-2 text-sm text-gray-500">Get your personalized interview questions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-blue-600">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+          <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <span className="block">Ready to transform your interview process?</span>
+            <span className="block text-blue-200">Start using Cogniscruit today.</span>
+          </h2>
+          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+            <div className="inline-flex rounded-md shadow">
+              <Link href="/signup" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50">
+                Get Started
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-800">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-white text-lg font-semibold">Cogniscruit</h3>
+              <p className="mt-2 text-gray-400 text-sm">
+                Transforming interview processes with AI-powered question generation.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-white text-lg font-semibold">Quick Links</h3>
+              <ul className="mt-2 space-y-1">
+                <li>
+                  <Link href="/about" className="text-gray-400 hover:text-white text-sm">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/features" className="text-gray-400 hover:text-white text-sm">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="text-gray-400 hover:text-white text-sm">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white text-lg font-semibold">Resources</h3>
+              <ul className="mt-2 space-y-1">
+                <li>
+                  <Link href="/blog" className="text-gray-400 hover:text-white text-sm">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/faq" className="text-gray-400 hover:text-white text-sm">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/support" className="text-gray-400 hover:text-white text-sm">
+                    Support
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white text-lg font-semibold">Newsletter</h3>
+              <p className="mt-2 text-gray-400 text-sm">
+                Subscribe to our newsletter for updates and insights.
+              </p>
+              <form className="mt-4">
+                <div className="flex">
+                  <input
+                    type="email"
+                    className="flex-1 px-4 py-2 text-sm text-gray-900 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter your email"
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="mt-8 border-t border-gray-700 pt-8">
+            <p className="text-gray-400 text-sm text-center">
+              © {new Date().getFullYear()} Cogniscruit. All rights reserved.
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
   );
