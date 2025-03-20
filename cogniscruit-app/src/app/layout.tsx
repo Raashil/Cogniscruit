@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import GitHubButton from "./components/GitHubButton";
+import ThemeToggle from "./components/ThemeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
           <GitHubButton />
+          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>
