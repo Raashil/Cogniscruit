@@ -12,8 +12,7 @@ export default function LoginPage() {
   // Redirect logic (optional, if needed)
   useEffect(() => {
     if (session && status === "authenticated") {
-      // Handle post-login logic here if needed
-      console.log("Logged in as", session.user?.name);
+      window.location.href = "/dashboard"; // 👈 Redirect using native method
     }
   }, [session, status]);
 
@@ -72,7 +71,7 @@ export default function LoginPage() {
           </div>
         </div>
       </nav>
-
+      {/* Login */}
       <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 flex justify-center">
         <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
           <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-6">
@@ -157,6 +156,104 @@ export default function LoginPage() {
           </p>
         </div>
       </div>
+      {/* Footer */}
+      <footer className="bg-gray-800">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-white text-lg font-semibold">Cogniscruit</h3>
+              <p className="mt-2 text-gray-400 text-sm">
+                Transforming interview processes with AI-powered question
+                generation.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-white text-lg font-semibold">Quick Links</h3>
+              <ul className="mt-2 space-y-1">
+                <li>
+                  <Link
+                    href="/about"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/features"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white text-lg font-semibold">Resources</h3>
+              <ul className="mt-2 space-y-1">
+                <li>
+                  <Link
+                    href="/blog"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/faq"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/support"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    Support
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white text-lg font-semibold">Newsletter</h3>
+              <p className="mt-2 text-gray-400 text-sm">
+                Subscribe to our newsletter for updates and insights.
+              </p>
+              <form className="mt-4">
+                <div className="flex">
+                  <input
+                    type="email"
+                    className="flex-1 px-4 py-2 text-sm text-gray-900 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter your email"
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="mt-8 border-t border-gray-700 pt-8">
+            <p className="text-gray-400 text-sm text-center">
+              ©️ {new Date().getFullYear()} Cogniscruit. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
