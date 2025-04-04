@@ -1,0 +1,187 @@
+{
+    "job_id": "fad1ed86-cfd8-43e8-be7b-41ac8367b95e",
+    "github_data": {
+        "error": "GitHub API request failed: 401 Client Error: Unauthorized for url: https://api.github.com/users/Rstar1998"
+    },
+    "linkedin_data": {
+        "public_identifier": "sundarpichai",
+        "profile_pic_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/person/sundarpichai/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20250322%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20250322T205930Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=7a0795b798d3663adb4163dee834523229d88f28d3ab2c795d45710360508d78",
+        "background_cover_image_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/person/sundarpichai/cover?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20250322%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20250322T205930Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=7eaa6fec502411ec898b8ace7fb3cf16b018e6916d42c7957a80fc8780d6966e",
+        "first_name": "Sundar ",
+        "last_name": "Pichai ",
+        "full_name": "Sundar  Pichai",
+        "follower_count": 380571,
+        "occupation": "CEO at Google",
+        "headline": "CEO at Google",
+        "summary": "CEO of Google and Alphabet. Focused on organizing the world's information and making it universally accessible and useful, building great products, and developing advanced technologies, including AI, to help people everywhere.",
+        "country": "US",
+        "country_full_name": "United States of America",
+        "city": "Mountain View",
+        "state": "California",
+        "experiences": [
+            {
+                "starts_at": {
+                    "day": 1,
+                    "month": 1,
+                    "year": 2015
+                },
+                "ends_at": null,
+                "company": "Google",
+                "company_linkedin_profile_url": "https://www.linkedin.com/company/google/",
+                "company_facebook_profile_url": null,
+                "title": "CEO",
+                "description": null,
+                "location": null,
+                "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/google/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20250322%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20250322T205930Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=9a9bff0cbe2850e132a72d9376fbefd13332ee4c55701a9f6fe6daec2abcb34b"
+            },
+            {
+                "starts_at": {
+                    "day": 1,
+                    "month": 4,
+                    "year": 2004
+                },
+                "ends_at": {
+                    "day": 31,
+                    "month": 1,
+                    "year": 2015
+                },
+                "company": "Google",
+                "company_linkedin_profile_url": "https://www.linkedin.com/company/google/",
+                "company_facebook_profile_url": null,
+                "title": "Product Management + Leadership",
+                "description": null,
+                "location": null,
+                "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/google/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20250322%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20250322T205930Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=9a9bff0cbe2850e132a72d9376fbefd13332ee4c55701a9f6fe6daec2abcb34b"
+            }
+        ],
+        "education": [
+            {
+                "starts_at": null,
+                "ends_at": null,
+                "field_of_study": null,
+                "degree_name": "MBA",
+                "school": "The Wharton School",
+                "school_linkedin_profile_url": "https://www.linkedin.com/school/the-wharton-school/",
+                "school_facebook_profile_url": null,
+                "description": null,
+                "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/the-wharton-school/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20250322%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20250322T205930Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=b76f9690c0ce012e3ea27389ce3a0c1c8c5eead25475cef36f5802ec67dc015d",
+                "grade": null,
+                "activities_and_societies": null
+            },
+            {
+                "starts_at": null,
+                "ends_at": null,
+                "field_of_study": "Materials Science and Engineering",
+                "degree_name": "MS",
+                "school": "Stanford University",
+                "school_linkedin_profile_url": "https://www.linkedin.com/school/stanford-university/",
+                "school_facebook_profile_url": null,
+                "description": null,
+                "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/stanford-university/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20250322%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20250322T205930Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=44164c854e5829bd4eeb430ed2ffeb3003bb42d91af41fca1a6159c6805a4ec1",
+                "grade": null,
+                "activities_and_societies": null
+            },
+            {
+                "starts_at": null,
+                "ends_at": null,
+                "field_of_study": null,
+                "degree_name": "B. Tech",
+                "school": "Indian Institute of Technology, Kharagpur",
+                "school_linkedin_profile_url": "https://www.linkedin.com/school/indian-institute-of-technology-kharagpur/",
+                "school_facebook_profile_url": null,
+                "description": null,
+                "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/indian-institute-of-technology-kharagpur/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20250322%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20250322T205930Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=25f6489a5c202c17e29a4613fa71c46ea9ea2e9a1171d6d760fa70a1d370c0d3",
+                "grade": null,
+                "activities_and_societies": null
+            }
+        ],
+        "languages": [],
+        "languages_and_proficiencies": [],
+        "accomplishment_organisations": [],
+        "accomplishment_publications": [],
+        "accomplishment_honors_awards": [],
+        "accomplishment_patents": [],
+        "accomplishment_courses": [],
+        "accomplishment_projects": [],
+        "accomplishment_test_scores": [],
+        "volunteer_work": [],
+        "certifications": [],
+        "connections": 0,
+        "people_also_viewed": [
+            {
+                "link": "https://www.linkedin.com/in/noam-shazeer-3b27288",
+                "name": "Noam Shazeer",
+                "summary": "VP Engineering, Gemini co-lead @ Google Deepmind",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/williamhgates",
+                "name": "Bill Gates",
+                "summary": "Chair, Gates Foundation and Founder, Breakthrough Energy",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/jeff-dean-8b212555",
+                "name": "Jeff Dean",
+                "summary": "Chief Scientist, Google DeepMind and Google Research",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/vaibhav-shenoy-653a31267",
+                "name": "Vaibhav Shenoy",
+                "summary": "Founder & CEO Of Genius Bharat Ka Apna Search Engine\ud83c\uddee\ud83c\uddf3 #BUILDING THE NEXT INTERNET FROM INDIA FOR THE WORLD",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/mattgarman",
+                "name": "Matt Garman",
+                "summary": "CEO at Amazon Web Services (AWS)",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/gaurav-bhaya-7736444",
+                "name": "Gaurav Bhaya",
+                "summary": "VP & GM at Google",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/patgelsinger",
+                "name": "Pat Gelsinger",
+                "summary": "Electrical engineering expert with four+ decades of technology leadership and experience",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/laxman-narasimhan",
+                "name": "Laxman Narasimhan",
+                "summary": "former ceo, Starbucks Coffee Company former ceo, Reckitt",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/rbranson",
+                "name": "Richard Branson",
+                "summary": "Founder at Virgin Group",
+                "location": null
+            },
+            {
+                "link": "https://www.linkedin.com/in/mustafa-suleyman",
+                "name": "Mustafa Suleyman",
+                "summary": "CEO, Microsoft AI",
+                "location": null
+            }
+        ],
+        "recommendations": [],
+        "activities": [],
+        "similarly_named_profiles": [],
+        "articles": [],
+        "groups": [],
+        "skills": [],
+        "inferred_salary": null,
+        "gender": null,
+        "birth_date": null,
+        "industry": null,
+        "extra": null,
+        "interests": [],
+        "personal_emails": [],
+        "personal_numbers": []
+    }
+}
