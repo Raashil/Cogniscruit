@@ -8,6 +8,8 @@ const authOptions = {
       clientSecret: process.env.AUTH_GOOGLE_SECRET!,
     }),
   ],
+  secret: process.env.AUTH_SECRET,
+  debug: process.env.NODE_ENV === 'development',
 };
 
 const handler = NextAuth(authOptions);
