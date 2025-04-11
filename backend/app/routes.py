@@ -11,9 +11,10 @@ def create_interview_gen_task():
     """Creates a new interview generation task and adds it to Redis."""
     try:
         data = request.get_json()
-        if not data or 'github_username' not in data or 'linkedin_url' not in data:
-            return jsonify({"error": "Both github_username and linkedin_url are required"}), 400
+        if not data or ('github_username' not in data) or ('linkedin_url' not in data) or ('job_description' not in data) :
+            return jsonify({"error": "job_description, github_username and linkedin_url are required"}), 400
 
+        job_description = data['job_description']
         username = data['github_username']
         linkedin_url = data['linkedin_url']
 
@@ -21,7 +22,7 @@ def create_interview_gen_task():
         linkedin_data = get_linkedin_data(linkedin_url)
 
         job_id = str(uuid.uuid4())
-        push_to_queue(job_id, github_data, linkedin_data)
+        push_to_queue(job_id, github_data, linkedin_data,job_description)
 
         return jsonify({"job_id": job_id})
     except Exception as e:
