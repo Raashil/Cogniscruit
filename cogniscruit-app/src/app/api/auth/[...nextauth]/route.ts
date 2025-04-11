@@ -13,10 +13,11 @@ const authOptions = {
       clientSecret: process.env.AUTH_GITHUB_SECRET!,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET, // required for JWT and production
   pages: {
     signIn: "/login", // optional: custom login page
   },
+  secret: process.env.AUTH_SECRET,
+  debug: process.env.NODE_ENV === 'development',
 };
 
 const handler = NextAuth(authOptions);
