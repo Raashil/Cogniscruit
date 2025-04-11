@@ -3,74 +3,60 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed w-full bg-white/80 backdrop-blur-sm z-50 border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="flex-shrink-0">
-              <span className="text-2xl font-bold text-blue-600">
-                Cogniscruit
-              </span>
-            </div>
-            <div className="hidden sm:flex sm:space-x-8">
-              <Link
-                href="/about"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                About
-              </Link>
-              <Link
-                href="/features"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Features
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Contact
-              </Link>
-            </div>
-            <div>
-              <Link
-                href="/login"
-                className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
-              >
-                Sign In
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
 
       {/* Hero Section */}
       <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
             <span className="block">
               Automate Interview Question Generation
             </span>
-            <span className="block text-blue-600">with AI</span>
+            <span className="block text-blue-600 dark:text-blue-400">with AI</span>
           </h1>
-          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
             Save Time, Ensure Consistency
           </p>
           <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
             <div className="rounded-md shadow">
               <Link
                 href="/demo"
-                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10"
+                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 md:py-4 md:text-lg md:px-10 transition-all duration-200 hover:scale-105"
               >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                  />
+                </svg>
                 Request Demo
               </Link>
             </div>
             <div className="mt-3 sm:mt-0 sm:ml-3">
               <Link
                 href="/learn-more"
-                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
+                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 dark:text-blue-300 bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800 md:py-4 md:text-lg md:px-10 transition-all duration-200 hover:scale-105"
               >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
                 Learn More
               </Link>
             </div>
@@ -79,21 +65,24 @@ export default function Home() {
       </div>
 
       {/* Problem Statement */}
-      <div className="bg-gray-50 py-16">
+      <div className="bg-gray-50 dark:bg-gray-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
               The Challenge of Manual Interview Question Generation
             </h2>
-            <p className="mt-4 text-lg text-gray-500">
+            <p className="mt-4 text-lg text-gray-500 dark:text-gray-400">
               Interviewers spend countless hours crafting questions, often
               resulting in inconsistent assessments and missed opportunities to
               evaluate key skills.
             </p>
             <div className="mt-8">
-              <div className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+              <Link
+                href="/solutions"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+              >
                 See How Cogniscruit Solves This
-              </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -103,13 +92,13 @@ export default function Home() {
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
               Key Features
             </h2>
           </div>
           <div className="mt-12 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {/* Feature 1 */}
-            <div className="relative p-6 bg-white rounded-lg shadow-lg">
+            <div className="relative p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-blue-500 text-white">
                   <svg
@@ -126,10 +115,10 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-4 text-lg font-medium text-gray-900">
+                <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                   Personalized Questions
                 </h3>
-                <p className="mt-2 text-base text-gray-500">
+                <p className="mt-2 text-base text-gray-500 dark:text-gray-400">
                   Generate tailored interview questions based on candidate
                   profiles and experience levels.
                 </p>
@@ -137,7 +126,7 @@ export default function Home() {
             </div>
 
             {/* Feature 2 */}
-            <div className="relative p-6 bg-white rounded-lg shadow-lg">
+            <div className="relative p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-blue-500 text-white">
                   <svg
@@ -154,10 +143,10 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-4 text-lg font-medium text-gray-900">
+                <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                   Job Description Analysis
                 </h3>
-                <p className="mt-2 text-base text-gray-500">
+                <p className="mt-2 text-base text-gray-500 dark:text-gray-400">
                   Automatically extract key requirements and create relevant
                   interview questions.
                 </p>
@@ -165,7 +154,7 @@ export default function Home() {
             </div>
 
             {/* Feature 3 */}
-            <div className="relative p-6 bg-white rounded-lg shadow-lg">
+            <div className="relative p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-blue-500 text-white">
                   <svg
@@ -182,10 +171,10 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-4 text-lg font-medium text-gray-900">
+                <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                   Skill Assessment
                 </h3>
-                <p className="mt-2 text-base text-gray-500">
+                <p className="mt-2 text-base text-gray-500 dark:text-gray-400">
                   Comprehensive evaluation of specific skills and competencies.
                 </p>
               </div>
@@ -195,10 +184,10 @@ export default function Home() {
       </div>
 
       {/* How It Works */}
-      <div className="bg-gray-50 py-16">
+      <div className="bg-gray-50 dark:bg-gray-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
               How It Works
             </h2>
           </div>
@@ -208,44 +197,44 @@ export default function Home() {
                 className="absolute inset-0 flex items-center"
                 aria-hidden="true"
               >
-                <div className="w-full border-t border-gray-300"></div>
+                <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
               </div>
               <div className="relative flex justify-center space-x-8">
-                <div className="bg-white px-4">
+                <div className="bg-white dark:bg-gray-800 px-4">
                   <div className="text-center">
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 text-white">
                       1
                     </div>
-                    <h3 className="mt-4 text-lg font-medium text-gray-900">
+                    <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                       Input Details
                     </h3>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                       Enter candidate and job information
                     </p>
                   </div>
                 </div>
-                <div className="bg-white px-4">
+                <div className="bg-white dark:bg-gray-800 px-4">
                   <div className="text-center">
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 text-white">
                       2
                     </div>
-                    <h3 className="mt-4 text-lg font-medium text-gray-900">
+                    <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                       AI Processing
                     </h3>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                       Our AI analyzes and generates questions
                     </p>
                   </div>
                 </div>
-                <div className="bg-white px-4">
+                <div className="bg-white dark:bg-gray-800 px-4">
                   <div className="text-center">
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 text-white">
                       3
                     </div>
-                    <h3 className="mt-4 text-lg font-medium text-gray-900">
+                    <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                       Ready to Use
                     </h3>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                       Get your personalized interview questions
                     </p>
                   </div>
@@ -271,7 +260,7 @@ export default function Home() {
             <div className="inline-flex rounded-md shadow">
               <Link
                 href="/signup"
-                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50"
+                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 dark:bg-gray-100 dark:hover:bg-gray-200"
               >
                 Get Started
               </Link>
@@ -287,8 +276,7 @@ export default function Home() {
             <div>
               <h3 className="text-white text-lg font-semibold">Cogniscruit</h3>
               <p className="mt-2 text-gray-400 text-sm">
-                Transforming interview processes with AI-powered question
-                generation.
+                Transforming interview processes with AI-powered question generation
               </p>
             </div>
             <div>
