@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - "5050:5050"  # host:container
+    environment:
+      - PYTHONUNBUFFERED=1
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_QUEUE=job_queue
+    depends_on:
+      - redis
+
+  worker:
+    build:
+      context: ./worker
+    container_name: worker
+    ports:
+      - "5051:5000"  # only needed if worker exposes something (optional)
+    environment:
+      - PYTHONUNBUFFERED=1
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_QUEUE=job_queue
+    depends_on:
+      - redis

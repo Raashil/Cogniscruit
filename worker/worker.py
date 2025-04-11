@@ -3,6 +3,7 @@ import json
 import os
 from google import genai
 from dotenv import load_dotenv
+from task import generate_prompt
 
 # Load environment variables
 load_dotenv()
@@ -40,23 +41,27 @@ print("Worker created ::::")
 while True:
     try:
         # Read job from Redis queue (Uncomment this when using Redis)
-        # _, job_data = redis_client.blpop(REDIS_QUEUE)
-        # job = json.loads(job_data)
+        _, job_data = redis_client.blpop(REDIS_QUEUE)
+        job = json.loads(job_data)
+        print(job)
 
         # For this example, we will use a static prompt
-        prompt = "Provide an interview question related to data engineering with a focus on database management."
+        # prompt = "Provide an interview question related to data engineering with a focus on database management."
 
-        # Call Gemini to generate the response
-        generated_text = generate_text(prompt)
-
-        # Print the generated question
-        print(f"Generated question (Gemini): {generated_text}")
+        # # Call Gemini to generate the response
+        prompt = generate_prompt(job)
+        print(prompt)
+        #generate_answer=""
+        generate_answer = generate_text(prompt)
+        
+        # # Print the generated question
+        print(f"Generated question (Gemini): {generate_answer}")
 
         # For testing purposes, break after the first job
-        break
+  
     except Exception as e:
         print("Error:", e)
-        break
+
 
 
 
