@@ -14,3 +14,8 @@ print(REDIS_HOST,REDIS_PORT,REDIS_QUEUE)
 
 SUPABASE_URL = "https://nabobxtdeszjezdwrlge.supabase.co/functions/v1/proxycurl-profile"
 SUPABASE_API_KEY = os.getenv("SUPABASE_API_KEY")
+
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+
+GOOGLE_CLIENT =  os.getenv("GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_ID")
+JWT_SECRET_KEY = os.getenv("JWT_SECRET", "supersecret")
