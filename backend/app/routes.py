@@ -70,6 +70,9 @@ def get_user_profile():
     if not user:
         return jsonify({"error": "User not found"}), 404
     
+    user.pop('_id', None)
+    user.pop('jobs', None)
+
     return jsonify({
         "user": user
     })
