@@ -22,6 +22,7 @@ services:
     ports:
       - "5050:5050"
     environment:
+      - PYTHONUNBUFFERED=1
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - REDIS_QUEUE=job_queue
@@ -35,6 +36,7 @@ services:
       context: ./worker
     container_name: worker
     environment:
+      - PYTHONUNBUFFERED=1
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - REDIS_QUEUE=job_queue
