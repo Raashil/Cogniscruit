@@ -83,6 +83,49 @@ export default function LoginPage() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signIn('google', { 
+        redirect: false,
+        callbackUrl: '/dashboard'
+      });
+      
+      if (result?.error) {
+        setError('Google sign in failed');
+        return;
+      }
+
+      // Get the Google token from the session
+      const response = await fetch('/api/auth/session');
+      const session = await response.json();
+      
+      if (session?.accessToken) {
+        // Send the token to your backend
+        const backendResponse = await fetch('http://localhost:5000/api/auth/google', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token: session.accessToken }),
+        });
+
+        if (!backendResponse.ok) {
+          throw new Error('Failed to authenticate with backend');
+        }
+
+        const backendData = await backendResponse.json();
+        
+        // Store the backend token in localStorage
+        localStorage.setItem('backendToken', backendData.token);
+        
+        // Redirect to dashboard after successful authentication
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'An error occurred during Google sign in');
+    }
+  };
+
   if (session) {
     return (
       <div className="min-h-screen bg-white pt-24 px-4 sm:px-6 lg:px-8 text-center">
@@ -216,20 +259,13 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-2 gap-3">
+              <div className="mt-6 grid grid-cols-1 gap-3">
                 <button
-                  onClick={() => signIn('google')}
+                  onClick={handleGoogleSignIn}
                   className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
                   <Image src="/google.svg" alt="Google" width={20} height={20} className="mr-2" />
                   Google
-                </button>
-                <button
-                  onClick={() => signIn('github')}
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600"
-                >
-                  <Image src="/github.svg" alt="GitHub" width={20} height={20} className="mr-2" />
-                  GitHub
                 </button>
               </div>
             </div>

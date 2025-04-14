@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import GitHubButton from "./components/GitHubButton";
-import ThemeToggle from "./components/ThemeToggle";
 import SessionWrapper from "./components/SessionWrapper";
 import Navbar from "./components/Navbar";
 
@@ -29,7 +28,6 @@ export default function RootLayout({
               {children}
             </main>
             <GitHubButton />
-            <ThemeToggle />
           </ThemeProvider>
         </SessionWrapper>
       </body>
