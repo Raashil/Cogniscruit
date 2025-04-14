@@ -1,0 +1,38 @@
+# LangChain + Ollama
+langchain
+langchain-ollama
+langchain-community
+langchainhub
+
+# AI API clients
+ollama
+openai
+google-generativeai
+
+# Resume / JD Parsing
+PyMuPDF
+docx2txt
+python-docx
+spacy
+chardet
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
+
+# Vectorization
+scikit-learn
+tiktoken
+faiss-cpu
+
+# Flask API
+Flask
+python-dotenv
+
+# Web scraping
+requests
+beautifulsoup4
+playwright
+
+# MongoDB
+pymongo
+
+# CLI enhancements
+rich
