@@ -5,6 +5,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import GitHubButton from "./components/GitHubButton";
 import Navbar from "./components/Navbar";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { AuthProvider } from "@/lib/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,7 @@ const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
 if (!GOOGLE_CLIENT_ID) {
   console.warn("⚠️ Missing NEXT_PUBLIC_GOOGLE_CLIENT_ID in .env.local!");
 } else {
-  console.log("✅ Loaded Google Client ID:", GOOGLE_CLIENT_ID);
+  console.log("Loaded Google Client ID:", GOOGLE_CLIENT_ID);
 }
 
 export const metadata: Metadata = {
@@ -33,11 +34,13 @@ export default function RootLayout({
         className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-200`}
       >
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-          <ThemeProvider>
-            <Navbar />
-            <main className="pt-16">{children}</main>
-            <GitHubButton />
-          </ThemeProvider>
+          <AuthProvider>
+            <ThemeProvider>
+              <Navbar />
+              <main className="pt-16">{children}</main>
+              <GitHubButton />
+            </ThemeProvider>
+          </AuthProvider>
         </GoogleOAuthProvider>
       </body>
     </html>

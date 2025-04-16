@@ -12,6 +12,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
+    console.log("sujithhhhh");
     setIsLoggedIn(!!token);
   }, []);
 
