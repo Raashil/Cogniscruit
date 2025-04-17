@@ -165,7 +165,7 @@ export default function LearnMorePage() {
                     Input Candidate Information
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Provide the candidate's resume, LinkedIn profile, or job description to our platform.
+                    Provide the candidate&apos;s resume, LinkedIn profile, or job description to our platform.
                   </p>
                 </div>
               </div>

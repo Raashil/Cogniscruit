@@ -1,10 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-
       {/* Hero Section */}
       <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
@@ -12,7 +10,9 @@ export default function Home() {
             <span className="block">
               Automate Interview Question Generation
             </span>
-            <span className="block text-blue-600 dark:text-blue-400">with AI</span>
+            <span className="block text-blue-600 dark:text-blue-400">
+              with AI
+            </span>
           </h1>
           <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
             Save Time, Ensure Consistency
@@ -259,7 +259,7 @@ export default function Home() {
           <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
             <div className="inline-flex rounded-md shadow">
               <Link
-                href="/signup"
+                href="/login"
                 className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 dark:bg-gray-100 dark:hover:bg-gray-200"
               >
                 Get Started
@@ -276,7 +276,8 @@ export default function Home() {
             <div>
               <h3 className="text-white text-lg font-semibold">Cogniscruit</h3>
               <p className="mt-2 text-gray-400 text-sm">
-                Transforming interview processes with AI-powered question generation
+                Transforming interview processes with AI-powered question
+                generation
               </p>
             </div>
             <div>

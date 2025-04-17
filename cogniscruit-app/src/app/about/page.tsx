@@ -77,7 +77,7 @@ export default function About() {
               Our Mission
             </h2>
             <p className="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
-              At Cogniscruit, we're on a mission to revolutionize the interview process by leveraging artificial intelligence to create personalized, relevant, and effective interview questions. We believe that every candidate deserves a fair and comprehensive assessment, and every interviewer should have access to the best tools for making informed decisions.
+              At Cogniscruit, we&apos;re on a mission to revolutionize the interview process by leveraging artificial intelligence to create personalized, relevant, and effective interview questions. We believe that every candidate deserves a fair and comprehensive assessment, and every interviewer should have access to the best tools for making informed decisions.
             </p>
           </div>
         </div>

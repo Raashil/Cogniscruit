@@ -69,6 +69,8 @@ def get_user_profile():
     user = get_user_entity(current_user_email)
     if not user:
         return jsonify({"error": "User not found"}), 404
+    user.pop('_id',None)
+    user.pop('jobs',None)
     
     user.pop('_id', None)
     user.pop('jobs', None)
