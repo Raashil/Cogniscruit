@@ -3,24 +3,28 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "../context/ThemeContext";
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
+import { useAuth } from '../../lib/auth';
+
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, logout } = useAuth();
 
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    console.log("sujithhhhh");
-    setIsLoggedIn(!!token);
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("authToken");
+  //   console.log("sujithhhhh");
+  //   setIsLoggedIn(!!token);
+  // }, []);
 
   const isActive = (path: string) => pathname === path;
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    window.location.href = "/";
+    // localStorage.removeItem("authToken");
+    logout();
+    //window.location.href = "/";
   };
 
   return (
@@ -56,7 +60,7 @@ export default function Navbar() {
             >
               Features
             </Link>
-            {isLoggedIn && (
+            {user && (
               <Link
                 href="/dashboard"
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
@@ -114,7 +118,7 @@ export default function Navbar() {
                 </svg>
               )}
             </button>
-            {isLoggedIn ? (
+            {user ? (
               <button
                 onClick={handleLogout}
                 className="px-4 py-2 rounded-md text-sm font-medium bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 transition-colors duration-200"
