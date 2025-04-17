@@ -46,7 +46,7 @@ services:
       - mongodb
   frontend:
     build:
-      context: ./cogniscruit-app
+      context: ./frontend
     container_name: frontend
     ports:
       - "3000:3000"
