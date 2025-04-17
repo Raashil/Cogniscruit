@@ -44,3 +44,11 @@ services:
     depends_on:
       - redis
       - mongodb
+  frontend:
+    build:
+      context: ./cogniscruit-app
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
