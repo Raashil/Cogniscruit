@@ -24,7 +24,7 @@ export default function Navbar() {
   const handleLogout = () => {
     // localStorage.removeItem("authToken");
     logout();
-    //window.location.href = "/";
+    window.location.href = "/";
   };
 
   return (

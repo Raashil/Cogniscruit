@@ -42,6 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Move the logout function before the useEffect where it's used
   const logout = useCallback(() => {
     localStorage.removeItem('authToken');
+    console.log('delete cookie of logout');
     deleteCookie('authToken');
     setUser(null);
     setToken(null);
@@ -81,7 +82,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } else {
       localStorage.removeItem('authToken');
       delete axios.defaults.headers.common['Authorization'];
-      deleteCookie('authToken');
+      // console.log('delete cookie of if else');
+      // deleteCookie('authToken');
     }
   }, [token,deleteCookie]);
 
@@ -102,6 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setToken(response.data.token);
 
       document.cookie = `authToken=${response.data.token}; path=/; max-age=86400; samesite=strict`;
+      console.log('added cookie');
 
 
       // Changed this line - redirect to dashboard after login
