@@ -11,6 +11,8 @@ import {
 } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { deleteCookie } from 'cookies-next';
+
 
 // Define the shape of the user object
 interface User {
@@ -40,10 +42,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Move the logout function before the useEffect where it's used
   const logout = useCallback(() => {
     localStorage.removeItem('authToken');
+    deleteCookie('authToken');
     setUser(null);
     setToken(null);
     router.push('/login');
-  }, [router]);
+  }, [router,deleteCookie]);
 
   useEffect(() => {
     // Check for token in localStorage on initial load
@@ -78,8 +81,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } else {
       localStorage.removeItem('authToken');
       delete axios.defaults.headers.common['Authorization'];
+      deleteCookie('authToken');
     }
-  }, [token]);
+  }, [token,deleteCookie]);
 
   const login = async (googleToken: string): Promise<any> => {
     try {
