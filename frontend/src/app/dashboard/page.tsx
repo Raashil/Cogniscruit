@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useAuth } from "@/lib/auth";
 
 import {
+  FaPlus,
+  FaRedo,
   FaLinkedin,
   FaGithub,
   FaBriefcase,
@@ -366,15 +368,17 @@ export default function Dashboard() {
 
               <button
                   onClick={() => refreshClick()}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 >
+                  <FaRedo className="text-sm" />
                   Refresh
                 </button>
 
                 <button
                   onClick={() => setActiveTab("addDetails")}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 >
+                  <FaPlus className="text-sm" />
                   Create New Job
                 </button>
 
@@ -399,7 +403,7 @@ export default function Dashboard() {
                             className="text-sm font-medium text-gray-800 dark:text-white cursor-pointer"
                             onClick={() => handleJobClick(job.id)}
                           >
-                            Job Id :{job.id}
+                            Job Id : {job.id}
                           </span>
                         
                       </div>
@@ -423,7 +427,7 @@ export default function Dashboard() {
                               className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-md transition-colors"
                             >
                               <FaInfoCircle className="text-sm" />
-                              More
+                              Details
                             </button>
                          
                           
