@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/lib/auth";
-import { useRouter } from "next/navigation";
 
 import {
   FaLinkedin,
@@ -28,8 +27,8 @@ export default function Dashboard() {
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [jobName, setJobName] = useState<string>("");
-  const { user, logout } = useAuth();
-  const router = useRouter();
+  const { user } = useAuth();
+
 
  
   const [recentJobs, setRecentJobs] = useState<
@@ -153,6 +152,13 @@ export default function Dashboard() {
       }
 
       const data = await response.json();
+
+      if (data?.job_id){
+        console.log("Job created sucessfully");
+      }
+      else{
+        console.log(data);
+      }
 
       // Add new job to recent jobs
       // const newJob = {
