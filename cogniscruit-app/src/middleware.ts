@@ -1,24 +1,27 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { getToken } from 'next-auth/jwt'
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request })
-  const isAuthPage = request.nextUrl.pathname.startsWith('/login')
-  
-  if (request.nextUrl.pathname.startsWith('/dashboard')) {
-    if (!token) {
-      return NextResponse.redirect(new URL('/login', request.url))
-    }
+export function middleware(request: NextRequest) {
+  const authToken = request.cookies.get('authToken')?.value;
+  const isLoginPage = request.nextUrl.pathname === '/login';
+  const isDashboardPage = request.nextUrl.pathname.startsWith('/dashboard');
+
+  // If trying to access dashboard without auth, redirect to login
+  if (isDashboardPage && !authToken) {
+    console.log('Middleware: No token found, redirecting to login');
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  if (isAuthPage && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+  // If already authenticated and trying to access login, redirect to dashboard
+  if (isLoginPage && authToken) {
+    console.log('Middleware: Token found, redirecting to dashboard');
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
-  return NextResponse.next()
+  return NextResponse.next();
 }
 
+// Configure which paths the middleware runs on
 export const config = {
-  matcher: ['/dashboard/:path*', '/login']
-} 
+  matcher: ['/dashboard/:path*', '/login'],
+};

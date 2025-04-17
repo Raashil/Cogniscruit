@@ -11,12 +11,10 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log("Auth Status ->", { loading, isAuthenticated });
-
   useEffect(() => {
+    // If already authenticated and not loading, redirect to dashboard
     if (!loading && isAuthenticated) {
-      console.log("Hello sujith");
-      router.push("/dashboard");
+      router.replace("/dashboard");
     }
   }, [isAuthenticated, loading, router]);
 
@@ -29,7 +27,8 @@ export default function LoginPage() {
         throw new Error("Google token not found");
       }
 
-      await login(credentialResponse.credential); // auth context handles token storage
+      await login(credentialResponse.credential);
+      // No need to manually redirect here as the auth context handles it
     } catch (error: any) {
       console.error("Login error:", error);
       setError(error.message || "Google sign-in failed");

@@ -2,17 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { useAuth } from "@/lib/auth";
+import { useRouter } from "next/navigation";
+
 import {
-  FaFileAlt,
   FaLinkedin,
-  FaGlobe,
   FaGithub,
   FaBriefcase,
-  FaCheck,
-  FaTimes,
-  FaEdit,
-  FaTrash,
+  FaInfoCircle,
 } from "react-icons/fa";
 
 interface Errors {
@@ -23,69 +20,79 @@ interface Errors {
 type TabType = "home" | "addDetails" | "progress";
 
 export default function Dashboard() {
-  const { data: session } = useSession();
   const [activeTab, setActiveTab] = useState<TabType>("home");
-  const [resumeURL, setResumeURL] = useState<string>("");
   const [linkedinURL, setLinkedinURL] = useState<string>("");
-  const [portfolioURL, setPortfolioURL] = useState<string>("");
   const [githubURL, setGithubURL] = useState<string>("");
-  const [questions, setQuestions] = useState<string[]>([]);
   const [errors, setErrors] = useState<Errors>({});
   const [isLoading, setIsLoading] = useState(false);
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [jobName, setJobName] = useState<string>("");
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+ 
   const [recentJobs, setRecentJobs] = useState<
     Array<{
       id: string;
-      title: string;
-      status: "processing" | "done" | "error";
-      questions: string[];
+      job_description: string;
+      created_at: string;
+      status: "waiting" | "inprogress" | "completed";
+      behavioural_questions: string[];
+      technical_questions: string[];
     }>
   >([]);
-  const [editingJob, setEditingJob] = useState<{
-    id: string;
-    title: string;
-    questions: string[];
-  } | null>(null);
+  
 
   useEffect(() => {
-    const fetchUserJobs = async () => {
-      try {
-        console.log("dash checkkkkkk");
-        const authToken = localStorage.getItem("authToken");
-        if (!authToken) {
-          throw new Error("No backend token found");
-        }
-
-        const response = await fetch("http://localhost:5000/get_user_jobs", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${authToken}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch jobs");
-        }
-
-        const data = await response.json();
-        const jobs = data.jobs.map((job: any) => ({
-          id: job.job_id,
-          title: job.job_description,
-          status: job.status.toLowerCase() as "processing" | "done" | "error",
-          questions:
-            job.behavioural === "Not Processed" ? [] : [job.behavioural],
-        }));
-        setRecentJobs(jobs);
-      } catch (error) {
-        console.error("Error fetching jobs:", error);
-      }
-    };
-
     fetchUserJobs();
   }, []);
+
+  const fetchUserJobs = async () => {
+    try {
+      
+      const authToken = localStorage.getItem("authToken");
+      const response = await fetch("http://127.0.0.1:5050/get_user_jobs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch jobs");
+      }
+
+      const data = await response.json();
+
+      /**
+       * 
+       * 
+        behavioural: "bcjbdjcbdsjc"
+        created_at: "Thu, 17 Apr 2025 03:18:18 GMT"
+        github_link: "Raashil"
+        job_description: "een fef mnefem"
+        job_id: "ea6201c2-3cec-46a7-b86c-1ba591ce30a2"
+        linkedin_link: "https://www.linkedin.com/in/raashil-aadhyanth/"
+        status: "Completed"
+        technical: "Not Processed"
+       */
+
+      
+      const jobs = data.jobs.map((job: any) => ({
+        id: job.job_id,
+        job_description: job.job_description,
+        created_at: job.created_at,
+        status: job.status.toLowerCase() as "waiting" | "inprogress" | "completed",
+        behavioural_questions: job.behavioural === "Not Processed" ? [] : [job.behavioural],
+        technical_questions: job.behavioural === "Not Processed" ? [] : [job.technical],
+      }));
+      setRecentJobs(jobs);
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  };
 
   const validateURLs = () => {
     const newErrors: Errors = {};
@@ -97,7 +104,7 @@ export default function Dashboard() {
       }
     }
 
-    // GitHub URL validation
+   // GitHub URL validation
     if (githubURL) {
       if (!githubURL.includes("github.com")) {
         newErrors.github = "Please enter a valid GitHub URL";
@@ -128,7 +135,7 @@ export default function Dashboard() {
         throw new Error("Invalid GitHub URL");
       }
 
-      const response = await fetch("http://localhost:5000/interview_gen_task", {
+      const response = await fetch("http://127.0.0.1:5050/interview_gen_task", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -148,21 +155,23 @@ export default function Dashboard() {
       const data = await response.json();
 
       // Add new job to recent jobs
-      const newJob = {
-        id: data.job_id,
-        title: jobName,
-        status: "processing" as const,
-        questions: [],
-      };
-      setRecentJobs((prev) => [newJob, ...prev]);
+      // const newJob = {
+      //   id: data.job_id,
+      //   title: jobName,
+      //   status: "processing" as const,
+      //   questions: [],
+      // };
+      // setRecentJobs((prev) => [newJob, ...prev]);
 
-      // Reset form
-      setJobName("");
-      setLinkedinURL("");
-      setGithubURL("");
+      // // Reset form
+      // setJobName("");
+      // setLinkedinURL("");
+      // setGithubURL("");
 
-      // Switch to Home tab after successful generation
-      setActiveTab("home");
+      // // Switch to Home tab after successful generation
+      // setActiveTab("home");
+      
+    
     } catch (error) {
       console.error("Error generating questions:", error);
       alert(
@@ -175,21 +184,11 @@ export default function Dashboard() {
     }
   };
 
-  const handleFileUpload = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    setURL: (url: string) => void
-  ) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // In a real app, you would upload the file to your server here
-      const fileURL = URL.createObjectURL(file);
-      setURL(fileURL);
-    }
-  };
 
-  const handleSignOut = () => {
-    signOut({ callbackUrl: "/" });
-  };
+
+  // const handleSignOut = () => {
+  //   signOut({ callbackUrl: "/" });
+  // };
 
   const handleJobClick = (jobId: string) => {
     setSelectedJob(jobId);
@@ -201,39 +200,21 @@ export default function Dashboard() {
     setSelectedJob(null);
   };
 
-  const handleDeleteJob = (jobId: string) => {
-    setRecentJobs((prev) => prev.filter((job) => job.id !== jobId));
-  };
+  
 
-  const handleEditJob = (job: (typeof recentJobs)[0]) => {
-    setEditingJob({
-      id: job.id,
-      title: job.title,
-      questions: job.questions,
-    });
-  };
 
-  const handleSaveEdit = () => {
-    if (!editingJob) return;
 
-    setRecentJobs((prev) =>
-      prev.map((job) =>
-        job.id === editingJob.id ? { ...job, title: editingJob.title } : job
-      )
-    );
-    setEditingJob(null);
-  };
-
-  const handleCancelEdit = () => {
-    setEditingJob(null);
-  };
-
+  // return (
+  //    <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+  //         Welcome, {user?.name || "User"}! 👋
+  //       </h1>
+  // );
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 pt-24 px-4 sm:px-6 lg:px-8">
       {/* Welcome Message */}
       <div className="max-w-7xl mx-auto mb-8">
         <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-          Welcome, {session?.user?.name || "User"}! 👋
+          Welcome, {user?.name || "User"}! 👋
         </h1>
         <p className="text-gray-600 dark:text-gray-400 mt-2">
           Ready to generate some interview questions?
@@ -262,7 +243,7 @@ export default function Dashboard() {
                   : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
               } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
             >
-              Add Job Details
+             AI Question Generator
             </button>
             <button
               onClick={() => setActiveTab("progress")}
@@ -272,7 +253,7 @@ export default function Dashboard() {
                   : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
               } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
             >
-              Progress
+              Analytics
             </button>
           </nav>
         </div>
@@ -286,21 +267,14 @@ export default function Dashboard() {
             <div className="lg:w-1/2 flex flex-col gap-6">
               {[
                 {
-                  label: "Job Name",
+                  label: "Add Job Description",
                   icon: <FaBriefcase className="text-blue-600" />,
                   url: jobName,
                   setURL: setJobName,
                   error: null,
-                  type: "text",
-                },
-                {
-                  label: "Add Job Description",
-                  icon: <FaBriefcase className="text-purple-600" />,
-                  url: portfolioURL,
-                  setURL: setPortfolioURL,
-                  error: null,
                   type: "textarea",
                 },
+             
                 {
                   label: "LinkedIn",
                   icon: <FaLinkedin className="text-blue-700" />,
@@ -332,14 +306,7 @@ export default function Dashboard() {
                       onChange={(e) => setURL(e.target.value)}
                       className="mt-2 w-full border dark:border-gray-700 rounded-md p-2 text-black dark:text-white bg-white dark:bg-gray-700 h-32 resize-none"
                     />
-                  ) : type === "file" ? (
-                    <input
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      onChange={(e) => handleFileUpload(e, setURL)}
-                      className="mt-2 block w-full text-sm text-gray-600 dark:text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-blue-900/30 dark:file:text-blue-400"
-                    />
-                  ) : (
+                  )  : (
                     <input
                       type="url"
                       placeholder={`Enter ${label} URL`}
@@ -422,69 +389,47 @@ export default function Dashboard() {
                       className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
                     >
                       <div className="flex items-center space-x-3">
-                        {editingJob?.id === job.id ? (
-                          <input
-                            type="text"
-                            value={editingJob.title}
-                            onChange={(e) =>
-                              setEditingJob((prev) =>
-                                prev ? { ...prev, title: e.target.value } : null
-                              )
-                            }
-                            className="border dark:border-gray-600 rounded-md px-2 py-1 text-black dark:text-white bg-white dark:bg-gray-800"
-                          />
-                        ) : (
+                         
                           <span
                             className="text-sm font-medium text-gray-800 dark:text-white cursor-pointer"
                             onClick={() => handleJobClick(job.id)}
                           >
-                            {job.title}
+                            Job Id :{job.id}
                           </span>
-                        )}
+                        
                       </div>
+
+                      <div className="flex items-center space-x-3">
+                         
+                          <span
+                            className="text-sm font-medium text-gray-800 dark:text-white cursor-pointer"
+                            
+                          >
+                            Created at :{job.created_at}
+                          </span>
+                        
+                      </div>
+
                       <div className="flex items-center space-x-2">
-                        {editingJob?.id === job.id ? (
-                          <>
+                        
+                          
                             <button
-                              onClick={handleSaveEdit}
-                              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 rounded-md transition-colors"
-                            >
-                              <FaCheck className="text-sm" />
-                              Save
-                            </button>
-                            <button
-                              onClick={handleCancelEdit}
-                              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 dark:text-gray-200 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-md transition-colors"
-                            >
-                              <FaTimes className="text-sm" />
-                              Cancel
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button
-                              onClick={() => handleEditJob(job)}
+                              onClick={() => handleJobClick(job.id)}
                               className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-md transition-colors"
                             >
-                              <FaEdit className="text-sm" />
-                              Edit
+                              <FaInfoCircle className="text-sm" />
+                              More
                             </button>
-                            <button
-                              onClick={() => handleDeleteJob(job.id)}
-                              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 rounded-md transition-colors"
-                            >
-                              <FaTrash className="text-sm" />
-                              Delete
-                            </button>
-                          </>
-                        )}
+                         
+                          
+                        
                         <div className="flex items-center space-x-2">
                           <div className="w-24 h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full transition-all duration-1000 ${
-                                job.status === "done"
+                                job.status === "completed"
                                   ? "w-full bg-green-500 dark:bg-green-400"
-                                  : job.status === "processing"
+                                  : job.status === "inprogress"
                                   ? "w-3/4 bg-blue-500 dark:bg-blue-400 animate-pulse"
                                   : "w-1/4 bg-red-500 dark:bg-red-400"
                               }`}
@@ -492,9 +437,9 @@ export default function Dashboard() {
                           </div>
                           <span
                             className={`text-xs font-medium ${
-                              job.status === "done"
+                              job.status === "completed"
                                 ? "text-green-600 dark:text-green-400"
-                                : job.status === "processing"
+                                : job.status === "inprogress"
                                 ? "text-blue-600 dark:text-blue-400"
                                 : "text-red-600 dark:text-red-400"
                             }`}
@@ -542,7 +487,7 @@ export default function Dashboard() {
                       <p className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
                         {
                           recentJobs.find((job) => job.id === selectedJob)
-                            ?.title
+                            ?.job_description
                         }
                       </p>
                     </div>
