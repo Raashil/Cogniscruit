@@ -35,7 +35,7 @@ def generate_prompt(job):
     linkedin_data = get_linkedin_data(job['linkedin_data'])
     repo_details = generate_repo_details(job['github_data'])
     job_description = job['job_description']
-    prompt = f"""
+    behavioural_prompt = f"""
             You are a helpful interview assistant. Based on the following candidate profile and job description, generate 10 **behavioral interview questions** tailored to the candidate’s previous experiences and the expectations for this job role.
 
             --- CANDIDATE PROFILE ---
@@ -54,7 +54,30 @@ def generate_prompt(job):
             --- TASK ---
 
             Generate 10 **behavioral** interview questions that assess the candidate's soft skills, problem-solving approaches, teamwork, leadership, adaptability, and communication — making strong connections to their technical background and the job description.
+            Only 10 questions numbered from 1 to 10 and nothing else.
+            """
+    
+    technical_prompt = f"""
+            You are a helpful interview assistant. Based on the following candidate profile and job description, generate 10 **technical interview questions** tailored to the candidate’s previous experiences and the expectations for this job role.
+
+            --- CANDIDATE PROFILE ---
+
+            LinkedIn Work Experience:
+            {linkedin_data.strip()}
+
+
+            GitHub Repositories Summary:
+            {repo_details.strip()}
+
+            --- JOB DESCRIPTION ---
+
+            {job_description.strip()}
+
+            --- TASK ---
+
+            Generate 10 **technical** interview questions that assess the candidate's technical skills, problem-solving approaches, teamwork, leadership, adaptability, and communication — making strong connections to their technical background and the job description.
+            Only 10 questions numbered from 1 to 10 and nothing else.
             """
 
-    return prompt
+    return behavioural_prompt,technical_prompt
         

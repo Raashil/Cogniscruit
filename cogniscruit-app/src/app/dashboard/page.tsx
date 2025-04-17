@@ -85,8 +85,8 @@ export default function Dashboard() {
         job_description: job.job_description,
         created_at: job.created_at,
         status: job.status.toLowerCase() as "waiting" | "inprogress" | "completed",
-        behavioural_questions: job.behavioural === "Not Processed" ? [] : [job.behavioural],
-        technical_questions: job.behavioural === "Not Processed" ? [] : [job.technical],
+        behavioural_questions: job.behavioural,
+        technical_questions: job.technical,
       }));
       setRecentJobs(jobs);
     } catch (error) {
@@ -500,11 +500,7 @@ export default function Dashboard() {
                           Behavioral Questions
                         </h3>
                         <div className="space-y-3">
-                          {[
-                            "Tell me about a time you had to work under pressure.",
-                            "Describe a situation where you had to resolve a conflict in your team.",
-                            "How do you handle feedback from your peers?",
-                          ].map((question, index) => (
+                          {recentJobs.find((job) => job.id === selectedJob)?.behavioural_questions.map((question, index) => (
                             <div
                               key={index}
                               className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg"
@@ -523,11 +519,7 @@ export default function Dashboard() {
                           Technical Questions
                         </h3>
                         <div className="space-y-3">
-                          {[
-                            "Explain the difference between REST and GraphQL.",
-                            "How would you optimize a slow database query?",
-                            "Describe your approach to testing a new feature.",
-                          ].map((question, index) => (
+                          {recentJobs.find((job) => job.id === selectedJob)?.technical_questions.map((question, index) => (
                             <div
                               key={index}
                               className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg"

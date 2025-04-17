@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from task import generate_prompt
 from mongo_service import update_job_status,update_job_fields
 from config import REDIS_HOST,REDIS_PORT,REDIS_QUEUE,GEMINI_API_KEY
+import re
 
 
 # Initialize Redis client
@@ -46,15 +47,26 @@ while True:
         # prompt = "Provide an interview question related to data engineering with a focus on database management."
 
         # # Call Gemini to generate the response
-        prompt = generate_prompt(job)
-        print(prompt)
-        generate_answer="bcjbdjcbdsjc"
-        #generate_answer = generate_text(prompt)
+        behavioural_prompt,technical_prompt = generate_prompt(job)
+
+        print(behavioural_prompt,technical_prompt)
+
+        behavioural_questions = re.findall(r"^\d+\.\s+(.*)$", generate_text(behavioural_prompt), re.MULTILINE)
+        technical_questions = re.findall(r"^\d+\.\s+(.*)$", generate_text(technical_prompt), re.MULTILINE)
+
+        # return [q.strip() for q in questions]
+        behavioural_questions = [q.strip() for q in behavioural_questions]
+        technical_questions = [q.strip() for q in technical_questions]
+
+        # generate_answer="bcjbdjcbdsjc"
+        # #generate_answer = generate_text(prompt)
         
         # # Print the generated question
-        print(f"Generated question (Gemini): {generate_answer}")
+        print(f"Generated behavioural question (Gemini): {behavioural_questions}")
+        print(f"Generated behavioural question (Gemini): {technical_questions}")
 
-        update_job_fields(job['email'], job['job_id'] ,"Completed", generate_answer )
+
+        update_job_fields(job['email'], job['job_id'] ,"Completed", behavioural_questions, technical_questions)
 
 
         # For testing purposes, break after the first job

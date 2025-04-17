@@ -50,8 +50,8 @@ def add_a_job_to_mongo(job_id, email,github_data, linkedin_data,job_description)
                                 "linkedin_link": linkedin_data,
                                 "job_description": job_description,
                                 "status": "Waiting",
-                                "behavioural": "Not Processed",
-                                "technical": "Not Processed",
+                                "behavioural": [],
+                                "technical": [],
                                 "created_at": datetime.now(timezone.utc)
  
                             }
