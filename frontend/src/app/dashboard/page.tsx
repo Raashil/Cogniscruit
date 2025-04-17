@@ -28,6 +28,11 @@ export default function Dashboard() {
   const [showModal, setShowModal] = useState(false);
   const [jobName, setJobName] = useState<string>("");
   const { user } = useAuth();
+  const [resultModal, setResultModal] = useState<{
+    open: boolean;
+    message: string;
+    success: boolean;
+  }>({ open: false, message: "", success: false });
 
 
  
@@ -64,19 +69,6 @@ export default function Dashboard() {
       }
 
       const data = await response.json();
-
-      /**
-       * 
-       * 
-        behavioural: "bcjbdjcbdsjc"
-        created_at: "Thu, 17 Apr 2025 03:18:18 GMT"
-        github_link: "Raashil"
-        job_description: "een fef mnefem"
-        job_id: "ea6201c2-3cec-46a7-b86c-1ba591ce30a2"
-        linkedin_link: "https://www.linkedin.com/in/raashil-aadhyanth/"
-        status: "Completed"
-        technical: "Not Processed"
-       */
 
       
       const jobs = data.jobs.map((job: any) => ({
@@ -153,43 +145,47 @@ export default function Dashboard() {
 
       const data = await response.json();
 
-      if (data?.job_id){
-        console.log("Job created sucessfully");
-      }
-      else{
+
+      if (data?.job_id) {
+        setResultModal({
+          open: true,
+          message: "Job created successfully!",
+          success: true,
+        });
+      } else {
         console.log(data);
+        setResultModal({
+          open: true,
+          message: "Failed to create job. Please try again.",
+          success: false,
+        });
       }
 
-      // Add new job to recent jobs
-      // const newJob = {
-      //   id: data.job_id,
-      //   title: jobName,
-      //   status: "processing" as const,
-      //   questions: [],
-      // };
-      // setRecentJobs((prev) => [newJob, ...prev]);
-
-      // // Reset form
-      // setJobName("");
-      // setLinkedinURL("");
-      // setGithubURL("");
-
-      // // Switch to Home tab after successful generation
-      // setActiveTab("home");
-      
-    
     } catch (error) {
       console.error("Error generating questions:", error);
-      alert(
-        error instanceof Error
-          ? error.message
-          : "An error occurred while generating questions"
-      );
+      setResultModal({
+        open: true,
+        message:
+          error instanceof Error
+            ? error.message
+            : "An error occurred while generating questions",
+        success: false,
+      });
+
+      // alert(
+      //   error instanceof Error
+      //     ? error.message
+      //     : "An error occurred while generating questions"
+      // );
     } finally {
       setIsLoading(false);
     }
   };
 
+
+  const refreshClick = () => {
+    window.location.href = "/dashboard";
+  };
 
 
   // const handleSignOut = () => {
@@ -207,14 +203,6 @@ export default function Dashboard() {
   };
 
   
-
-
-
-  // return (
-  //    <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-  //         Welcome, {user?.name || "User"}! 👋
-  //       </h1>
-  // );
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 pt-24 px-4 sm:px-6 lg:px-8">
       {/* Welcome Message */}
@@ -374,14 +362,25 @@ export default function Dashboard() {
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
             <div className="space-y-6">
               {/* Create New Job Button */}
-              <div className="flex justify-end">
+              <div className="flex justify-end space-x-2">
+
+              <button
+                  onClick={() => refreshClick()}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                >
+                  Refresh
+                </button>
+
                 <button
                   onClick={() => setActiveTab("addDetails")}
                   className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 >
                   Create New Job
                 </button>
+
+
               </div>
+
 
               {/* Job Status List */}
               <div className="space-y-4">
@@ -463,81 +462,67 @@ export default function Dashboard() {
               {/* Questions Modal */}
               {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full p-6">
-                    <div className="flex justify-between items-center mb-6">
-                      <h2 className="text-xl font-bold text-gray-800 dark:text-white">
-                        Job Description
-                      </h2>
-                      <button
-                        onClick={handleCloseModal}
-                        className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                      >
-                        <svg
-                          className="w-6 h-6"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full p-6 overflow-hidden">
+
+                    {/* Scrollable content */}
+                    <div className="max-h-[80vh] overflow-y-auto pr-2">
+                      <div className="flex justify-between items-center mb-6">
+                        <h2 className="text-xl font-bold text-gray-800 dark:text-white">
+                          Job Description
+                        </h2>
+                        <button
+                          onClick={handleCloseModal}
+                          className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-
-                    {/* Job Description */}
-                    <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                      <p className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
-                        {
-                          recentJobs.find((job) => job.id === selectedJob)
-                            ?.job_description
-                        }
-                      </p>
-                    </div>
-
-                    {/* Questions Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Behavioral Questions Column */}
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-                          Behavioral Questions
-                        </h3>
-                        <div className="space-y-3">
-                          {recentJobs.find((job) => job.id === selectedJob)?.behavioural_questions.map((question, index) => (
-                            <div
-                              key={index}
-                              className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg"
-                            >
-                              <p className="text-gray-800 dark:text-gray-200">
-                                {question}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
                       </div>
 
-                      {/* Technical Questions Column */}
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-                          Technical Questions
-                        </h3>
-                        <div className="space-y-3">
-                          {recentJobs.find((job) => job.id === selectedJob)?.technical_questions.map((question, index) => (
-                            <div
-                              key={index}
-                              className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg"
-                            >
-                              <p className="text-gray-800 dark:text-gray-200">
-                                {question}
-                              </p>
-                            </div>
-                          ))}
+                      {/* Job Description */}
+                      <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <p className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
+                          {recentJobs.find((job) => job.id === selectedJob)?.job_description}
+                        </p>
+                      </div>
+
+                      {/* Questions Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Behavioral Questions Column */}
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+                            Behavioral Questions
+                          </h3>
+                          <div className="space-y-3">
+                            {recentJobs.find((job) => job.id === selectedJob)?.behavioural_questions.map((question, index) => (
+                              <div key={index} className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                                <p className="text-gray-800 dark:text-gray-200">
+                                  {question}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Technical Questions Column */}
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+                            Technical Questions
+                          </h3>
+                          <div className="space-y-3">
+                            {recentJobs.find((job) => job.id === selectedJob)?.technical_questions.map((question, index) => (
+                              <div key={index} className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                                <p className="text-gray-800 dark:text-gray-200">
+                                  {question}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               )}
@@ -678,6 +663,35 @@ export default function Dashboard() {
           </div>
         </div>
       </footer>
+
+      {resultModal.open && (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-white">
+              {resultModal.success ? "Success" : "Error"}
+            </h2>
+          </div>
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            {resultModal.message}
+          </p>
+          <div className="flex justify-end">
+            <button
+              onClick={() => {
+                setResultModal({ open: false, message: "", success: false });
+                if (resultModal.success) {
+                  window.location.href = "/dashboard";
+                }
+              }}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+      )}
+
     </div>
   );
 }
