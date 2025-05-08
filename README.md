@@ -32,19 +32,17 @@ Interviewers often need to research a candidate’s background and formulate rel
 
 1. **User Input:** Recruiters or interviewers input candidate details, job descriptions, or topics.
 2. **Data Processing:** The system extracts key information (e.g., skills, experience) from resumes or URLs.
-3. **AI Question Generation:** Uses OpenAI and LangChain to generate relevant, tailored interview questions.
-4. **Real-Time Workflow:** Confluent Cloud (Kafka) streams data between the app and AI agents. Flink handles real-time question generation and validation.
-5. **Output:** A list of tailored interview questions is generated for the user.
+3. **AI Question Generation:** Uses Gemini to generate relevant, tailored interview questions.
+4. **Output:** A list of tailored interview questions is generated for the user.
 
 ---
 
 ## Tech Stack
 
 - **Frontend:** Next.js (React)
-- **Backend:** Node.js / Python
-- **Database:** MongoDB / Firebase / Supabase
-- **Streaming:** Confluent Cloud (Kafka), Flink SQL
-- **AI:** OpenAI / Deepseek / Llama
+- **Backend:**  Python
+- **Database:** MongoDB , Redis (Queue)
+- **AI:** Google Gemini / Llama
 
 ---
 
@@ -55,7 +53,7 @@ Interviewers often need to research a candidate’s background and formulate rel
 | Raashil Aadhyanth     | ✓        |         | ✓   |        |         |               | ✓     |
 | Jonathan Guan         |          |         | ✓   |        | ✓       |               |       |
 | Sujith Venkatesh      | ✓        |         |     | ✓      |         |               |       |
-| Ross Carvalho         |          | ✓       | ✓   |        |         |               |       |
+| Ross Carvalho         | ✓        | ✓       | ✓   | ✓      |         |               |       |
 | Reshma Ramakumar      |          | ✓       |     | ✓      |         |               |       |
 | Hui Zhang             |          |         | ✓   |        |         |               |       |
 | Arun Chowdary         |          |         |     |        | ✓       |  ✓            |       |
@@ -67,18 +65,39 @@ Interviewers often need to research a candidate’s background and formulate rel
 
 To get started with the Cogniscruit project, follow these steps:
 
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/your-repo/cogniscruit.git
+1. Clone the repository:
    
-2. Install dependencies:
    ```bash
-   npm install
-
-3. Set up the backend server and database.
-4. Run the development server:
+   git clone https://github.com/Raashil/Cogniscruit.git
+   ```
+2. Set up env files for backend , workers and frontend
+   
+   - Backend `.env` file
+     
+     ``` text
+     SUPABASE_API_KEY=
+     GITHUB_TOKEN=
+     GOOGLE_CLIENT_ID=
+     JWT_SECRET_KEY=
+     ```
+   - Worker `.env` file
+     
+     ``` text
+     GEMINI_API_KEY=
+     ```
+   - Frontend `.env.local`
+     
+     ``` text
+      NEXTAUTH_URL=http://localhost:3000 
+      NEXT_PUBLIC_GOOGLE_CLIENT_ID=
+      ```
+3. Spin up containers using docker compose:
+   
    ```bash
-   npm run dev
+   docker-compose up --build
+   ```
+4. Check on `http://localhost:3000`
+   
 
 ---
 
