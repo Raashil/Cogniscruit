@@ -114,6 +114,14 @@ export default function Dashboard() {
       alert("Please enter a job name");
       return;
     }
+    if (!linkedinURL.trim()) {
+      alert("Please enter a linkedinURL");
+      return;
+    }
+    if (!githubURL.trim()) {
+      alert("Please enter a githubURL ");
+      return;
+    }
 
     setIsLoading(true);
     try {
