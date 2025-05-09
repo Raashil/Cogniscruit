@@ -97,7 +97,7 @@ export default function FAQ() {
             Still have questions?
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
-            Can't find the answer you're looking for? Please chat to our friendly team.
+            Can&apos;t find the answer you&apos;re looking for? Please chat to our friendly team.
           </p>
           <Link
             href="/support"

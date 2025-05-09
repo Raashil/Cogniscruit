@@ -46,7 +46,7 @@ export default function Support() {
           Contact Support
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400">
-          We're here to help! Get in touch with our support team.
+          We&apos;re here to help! Get in touch with our support team.
         </p>
       </div>
 
@@ -137,7 +137,7 @@ export default function Support() {
                   Message Sent!
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  Thank you for contacting us. We'll get back to you shortly.
+                  Thank you for contacting us. We&apos;ll get back to you shortly.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
