@@ -4,6 +4,11 @@ This module is responsible for generating personalized interview questions based
 
 ---
 
+## Contributors
+
+- Jonathan Guan (Team Leader)  
+- Hui Zhang
+
 ## 🚀 Quick Start
 
 ### Step 1: Install Dependencies
